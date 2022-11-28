@@ -1,0 +1,25 @@
+#+title: Bucks library README
+#+author: Me, who else?
+
+* What is even going on here?
+
+Bucks is a new and shiny money handling library. I made it, because we have five
+different 'Money' type implementations and they are all slightly different from
+each other. Therefore, making a new one and pulling the best parts of those old
+makes a whole lot more sense!
+
+* But how do I use it?
+
+Add 'bucks' to your .cabal file and maybe to your stack.yaml as well. You're a
+big boy, you know the drill.
+
+* Features
+
+Things that require chonky third-party dependencies are hidden behind flags.
+Want aeson instances? Enable the flag. Want Rel8 for your database shenanigans?
+Enable the flag! Want something else? Add that thing, make a flag for it, and
+don't forget to have fun!
+
+* You forgot feature X..
+
+And you're welcome to add it :)
