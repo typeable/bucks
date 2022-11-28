@@ -15,11 +15,17 @@ import Data.Proxy
 import GHC.Generics
 import GHC.TypeLits
 
+-- | Money type. This is actually 'Centi' from 'Data.Fixed' in disguise.
+--   The type parameter is phantom, you probably want to use 'Currency' there.
+--   See also 'Data.Money.Currencies' for currency types.
 newtype Money curr = Money { getAmount :: Centi }
   deriving (Eq, Ord, Generic)
 
+-- | Empty type, used only to carry its type parameter with a currency code around. E.g. 'Currency "USD"', 'Currency "GBP"', et cetera.
+--   See Data.Money.Currencies for pre-defined currency types.
 data Currency (name :: Symbol)
 
+-- | Statically known currency type class.
 class KnownCurrency c where
   currencyCode :: String
 
