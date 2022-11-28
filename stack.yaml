@@ -1,0 +1,8 @@
+resolver: lts-20.2
+
+packages:
+- .
+
+flags:
+  bucks:
+    aeson: true
