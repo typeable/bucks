@@ -6,3 +6,7 @@ packages:
 flags:
   bucks:
     aeson: true
+    rel8: true
+
+nix:
+  packages: [postgresql]
