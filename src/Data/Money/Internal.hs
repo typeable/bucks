@@ -7,6 +7,8 @@
 module Data.Money.Internal ( Money(..)
                            , Currency
                            , KnownCurrency(..)
+                           , (*%)
+                           , (/%)
                            ) where
 
 import Data.Fixed (Centi)
@@ -14,6 +16,7 @@ import Data.Group
 import Data.Proxy
 import GHC.Generics
 import GHC.TypeLits
+import GHC.Stack (HasCallStack)
 
 -- | Money type. This is actually 'Centi' from 'Data.Fixed' in disguise.
 --   The type parameter is phantom, you probably want to use 'Currency' there.
@@ -55,3 +58,11 @@ instance KnownCurrency c => Read (Money c) where
     | otherwise = []
     where expCurr = currencyCode @c <> " "
           l = length expCurr
+
+(*%) :: Money curr -> Centi -> Money curr
+(Money m) *% pct = Money (m * pct)
+
+(/%) :: HasCallStack => Money curr -> Centi -> Money curr
+_ /% 0 = error "Called /% with 0 divisor"
+(Money m) /% pct = Money (fromRational r)
+  where r = toRational m / toRational pct
