@@ -19,6 +19,11 @@ flag aeson
      default:         False
      manual:          True
 
+flag openapi
+     description:     Enable OpenAPI instances
+     default:         False
+     manual:          True
+
 flag rel8
      description:     Enable Rel8 support
      default:         False
@@ -38,6 +43,10 @@ library
        other-modules: Data.Money.JSON
        build-depends: aeson >= 2.0 && < 3.0
        ghc-options:   -DUSE_AESON
+    if flag(openapi)
+       other-modules: Data.Money.OpenApi
+       build-depends: openapi3
+       ghc-options:   -DUSE_OPENAPI
     if flag(rel8)
        other-modules: Data.Money.Rel8
        build-depends: rel8 >= 1.4,

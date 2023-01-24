@@ -6,6 +6,7 @@ packages:
 flags:
   bucks:
     aeson: true
+    openapi: true
     rel8: true
 
 nix:
