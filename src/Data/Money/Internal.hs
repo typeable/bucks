@@ -1,5 +1,6 @@
 {-# LANGUAGE AllowAmbiguousTypes #-}
 {-# LANGUAGE DataKinds #-}
+{-# LANGUAGE DeriveDataTypeable #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE KindSignatures #-}
 {-# LANGUAGE ScopedTypeVariables #-}
@@ -11,9 +12,9 @@ module Data.Money.Internal ( Money(..)
                            , (/%)
                            ) where
 
+import Data.Data
 import Data.Fixed (Centi)
 import Data.Group
-import Data.Proxy
 import GHC.Generics
 import GHC.TypeLits
 import GHC.Stack (HasCallStack)
@@ -22,7 +23,7 @@ import GHC.Stack (HasCallStack)
 --   The type parameter is phantom, you probably want to use 'Currency' there.
 --   See also 'Data.Money.Currencies' for currency types.
 newtype Money curr = Money { getAmount :: Centi }
-  deriving (Eq, Ord, Generic)
+  deriving (Eq, Ord, Generic, Data)
 
 -- | Empty type, used only to carry its type parameter with a currency code around. E.g. 'Currency "USD"', 'Currency "GBP"', et cetera.
 --   See Data.Money.Currencies for pre-defined currency types.

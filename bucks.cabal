@@ -10,7 +10,7 @@ maintainer:         nick@typeable.io
 category:           Data
 build-type:         Simple
 
-source-repository:  head
+source-repository   head
   type: git
   location: https://github.com/typeable/bucks.git
 
@@ -42,15 +42,15 @@ library
     if flag(aeson)
        other-modules: Data.Money.JSON
        build-depends: aeson >= 2.0 && < 3.0
-       ghc-options:   -DUSE_AESON
+       cpp-options:   -DUSE_AESON
     if flag(openapi)
        other-modules: Data.Money.OpenApi
        build-depends: openapi3
-       ghc-options:   -DUSE_OPENAPI
+       cpp-options:   -DUSE_OPENAPI
     if flag(rel8)
        other-modules: Data.Money.Rel8
        build-depends: rel8 >= 1.4,
                       scientific
-       ghc-options:   -DUSE_REL8
+       cpp-options:   -DUSE_REL8
     hs-source-dirs:   src
     default-language: Haskell2010
