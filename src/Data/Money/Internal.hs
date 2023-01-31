@@ -28,6 +28,7 @@ newtype Money curr = Money { getAmount :: Centi }
 -- | Empty type, used only to carry its type parameter with a currency code around. E.g. 'Currency "USD"', 'Currency "GBP"', et cetera.
 --   See Data.Money.Currencies for pre-defined currency types.
 data Currency (name :: Symbol)
+  deriving (Generic, Data)
 
 -- | Statically known currency type class.
 class KnownCurrency c where
