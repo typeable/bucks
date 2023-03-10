@@ -48,7 +48,7 @@ createConnection = throwLeft =<< Hasql.acquire dbsets
 
 createTable :: Connection -> IO ()
 createTable conn = throwLeft =<< Hasql.run sql conn
-  where sql = Hasql.sql "CREATE TABLE bucks (amount money not null);"
+  where sql = Hasql.sql "CREATE TABLE bucks (amount decimal not null);"
 
 dropTable :: Connection -> IO ()
 dropTable conn = throwLeft =<< Hasql.run sql conn
