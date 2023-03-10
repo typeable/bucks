@@ -54,3 +54,19 @@ library
        cpp-options:   -DUSE_REL8
     hs-source-dirs:   src
     default-language: Haskell2010
+
+test-suite rel8-test
+    import:           warnings
+    type:             exitcode-stdio-1.0 
+    hs-source-dirs:   test
+    main-is:          Rel8Spec.hs
+    build-depends:    base >= 4.14 && < 5.0,
+                      bucks,
+                      hasql,
+                      hspec,
+                      rel8
+    default-language: Haskell2010
+    if flag(rel8)
+      buildable:      True
+    else
+      buildable:      False
